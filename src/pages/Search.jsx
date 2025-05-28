@@ -1,13 +1,41 @@
+import { use, useActionState, useEffect } from 'react';
+import { toast } from 'react-toastify';
 import { SearchForm, SearchResults } from '../components';
 import { searchProducts } from '../api/index.js';
 
 const productsPromise = searchProducts();
 
 const Search = () => {
+  const action = async (prevState, formData) => {
+    const category = formData.get('category');
+    const minPrice = isNaN(parseFloat(formData.get('minPrice')))
+      ? undefined
+      : parseFloat(formData.get('minPrice'));
+    const maxPrice = isNaN(parseFloat(formData.get('maxPrice')))
+      ? undefined
+      : parseFloat(formData.get('maxPrice'));
+    const query = formData.get('query');
+    const { error, products } = await searchProducts({
+      category,
+      minPrice,
+      maxPrice,
+      query
+    });
+    return { error, products };
+  };
+
+  const [state, formAction, isPending] = useActionState(action, use(productsPromise));
+
+  useEffect(() => {
+    if (state.error) {
+      toast.error(state.error);
+    }
+  }, [state]);
+
   return (
     <div className='flex flex-col items-center'>
-      <SearchForm />
-      <SearchResults productsPromise={productsPromise} />
+      <SearchForm formAction={formAction} isPending={isPending} />
+      <SearchResults products={state.products} />
       <div className='mockup-code mt-5'>
         <pre>
           <code>Right now, the promise returned by searchProducts is being passed down to the</code>

@@ -1,5 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from '../components';
+import { ErrorFallback, Instructions } from '../components';
 
 const Contact = () => {
   return (
@@ -25,20 +25,7 @@ const Contact = () => {
           </fieldset>
         </form>
       </ErrorBoundary>
-      <div className='mockup-code mt-5'>
-        <pre data-prefix='1'>
-          <code>- Import sendContactForm from 'src/api/index.js';</code>
-        </pre>
-        <pre data-prefix='2'>
-          <code>- Create an action for the form</code>
-        </pre>
-        <pre data-prefix='3'>
-          <code>- Within the action, pass the form fields to sendContactForm</code>
-        </pre>
-        <pre data-prefix='4'>
-          <code>- Disable the button and show "Sending" while the action is being executed</code>
-        </pre>
-      </div>
+      <Instructions path='/contact.md' />
     </div>
   );
 };

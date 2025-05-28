@@ -33,7 +33,7 @@ npm install
 Start the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 This command will start the React application, it'll be available at `http://localhost:5173`

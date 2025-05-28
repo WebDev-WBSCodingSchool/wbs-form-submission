@@ -1,5 +1,5 @@
-import { ErrorBoundary } from 'react-error-boundary';
 import { useFormStatus } from 'react-dom';
+import { ErrorBoundary } from 'react-error-boundary';
 import { toast } from 'react-toastify';
 import { ErrorFallback } from '../components';
 import { registerNewsletter } from '../api';
@@ -16,8 +16,8 @@ const Submit = () => {
 const Register = () => {
   const action = async formData => {
     const email = formData.get('email');
-    await registerNewsletter(email);
-    toast.success(`Successfully register ${email}`);
+    const result = await registerNewsletter(email);
+    toast.success(result);
   };
 
   return (

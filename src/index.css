@@ -1,2 +1,8 @@
 @import 'tailwindcss';
 @plugin 'daisyui';
+
+.instructions-container {
+  * {
+    all: revert;
+  }
+}

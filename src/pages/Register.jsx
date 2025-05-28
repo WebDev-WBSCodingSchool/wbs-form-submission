@@ -1,5 +1,5 @@
 import { ErrorBoundary } from 'react-error-boundary';
-import { ErrorFallback } from '../components';
+import { ErrorFallback, Instructions } from '../components';
 
 const Register = () => {
   return (
@@ -14,20 +14,7 @@ const Register = () => {
           </fieldset>
         </form>
       </ErrorBoundary>
-      <div className='mockup-code mt-5'>
-        <pre data-prefix='1'>
-          <code>- Import registerNewsletter from 'src/api/index.js';</code>
-        </pre>
-        <pre data-prefix='2'>
-          <code>- Create an action for the form</code>
-        </pre>
-        <pre data-prefix='3'>
-          <code>- Within the action, pass the email to registerNewsletter</code>
-        </pre>
-        <pre data-prefix='4'>
-          <code>- Make the submit button show the status of the action with useFormStatus</code>
-        </pre>
-      </div>
+      <Instructions path='/register.md' />
     </div>
   );
 };
